@@ -18,10 +18,9 @@ int isFull(Queue Q);
 void initQueue(Queue *Q);
 void makenull(Queue *Q);
 void displayQueue(Queue Q);
-void throwError(const char message[]);
 
 void enqueue(char elem, Queue *Q){
-    if(Q->rear-Q->front!=MAX-1){
+    if(Q->rear - Q->front != MAX-1){
 
         if(Q->front == -1){ Q->front = 0; }
 
@@ -36,9 +35,7 @@ void enqueue(char elem, Queue *Q){
         
         Q->rear++;
         Q->Elem[Q->rear] = elem;
-    } else {
-        throwError("Queue is Full!");
-    }
+    } 
 }
 
 void dequeue(Queue *Q){
@@ -47,9 +44,7 @@ void dequeue(Queue *Q){
         if(Q->front > Q->rear) {
             initQueue(Q);
         }
-    } else {
-        throwError("Queue is empty, nothing to dequeue.");
-    }
+    } 
 }
 
 char front(Queue Q) { return (Q.rear!=-1) ? Q.Elem[Q.front] : '0'; }
@@ -68,11 +63,6 @@ void displayQueue(Queue Q){
         printf("| %c ", (isalnum(Q.Elem[i])) ? Q.Elem[i] : '0' );
     }
     printf("|\n");
-}
-
-void throwError(const char message[]) {
-    fprintf(stderr, "Error: %s\n", message);
-    exit(EXIT_FAILURE);  // Exit with a failure status
 }
 
 int main(){
