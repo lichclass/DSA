@@ -31,17 +31,17 @@ typedef enum {false, true} boolean;
 
 // Heap Management Operations
 void initVirtualHeap(VirtualHeap *VH);
-int allocSpace(VirtualHeap *VH);
-void deallocSpace(VirtualHeap *VH, int index);
+int allocSpace(VirtualHeap *VH); 
+void deallocSpace(VirtualHeap *VH, int index); // 
 
 // List Operations
-void initList(List *L);
-void insertFirst(List *L, char elem, VirtualHeap *VH);
+void initList(List *L); // 
+void insertFirst(List *L, char elem, VirtualHeap *VH); 
 void insertLast(List *L, char elem, VirtualHeap *VH);
 boolean findElem(List L, char elem, VirtualHeap *VH);
 void deleteElem(List *L, char elem, VirtualHeap *VH);
 void deleteAllOccurences(List *L, char elem, VirtualHeap *VH);
-void insertSorted(List *L, char elem, VirtualHeap *VH);
+void insertSorted(List *L, char elem, VirtualHeap *VH); // 
 boolean isEqualList(List L1, List L2, VirtualHeap *VH);
 
 // Display Operations
