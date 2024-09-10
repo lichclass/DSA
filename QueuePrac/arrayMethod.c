@@ -47,20 +47,31 @@ void dequeue(Queue *Q){
     } 
 }
 
-char front(Queue Q) { return (Q.rear!=-1) ? Q.Elem[Q.front] : '0'; }
+char front(Queue Q) { 
+    return (Q.rear!=-1) ? Q.Elem[Q.front] : '0'; 
+}
 
-int isEmpty(Queue Q){ return Q.rear==-1; }
+int isEmpty(Queue Q){ 
+    return Q.rear==-1; 
+}
 
-int isFull(Queue Q){ return Q.rear - Q.front == MAX-1; }
+int isFull(Queue Q){ 
+    return Q.rear - Q.front == MAX-1; 
+}
 
-void initQueue(Queue *Q){ Q->front = Q->rear = -1; }
+void initQueue(Queue *Q){ 
+    Q->front = Q->rear = -1; 
+}
 
-void makenull(Queue *Q){ initQueue(Q); }
+void makenull(Queue *Q){ 
+    initQueue(Q); 
+}
 
 void displayQueue(Queue Q){
     printf("Queue: ");
-    for(int i=0; i<MAX; i++){
-        printf("| %c ", (isalnum(Q.Elem[i])) ? Q.Elem[i] : '0' );
+    while(!isEmpty(Q)){
+        printf("| %c ", front(Q));
+        dequeue(&Q);
     }
     printf("|\n");
 }
@@ -74,10 +85,6 @@ int main(){
     enqueue('c', &Q);
     enqueue('d', &Q);
     enqueue('e', &Q);
-
-    makenull(&Q);
-
-    enqueue('L', &Q);
 
     printf("--Front: index %d \n--Rear : index %d \n--Front: %c\n", Q.front, Q.rear, front(Q));
     

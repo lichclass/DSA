@@ -203,13 +203,15 @@ void insertSorted(List *L, char elem, VirtualHeap *VH) {
 
 boolean isEqualList(List L1, List L2, VirtualHeap *VH) {
     List trav1, trav2;
-    for (trav1 = L1, 
-         trav2 = L2; 
-            (trav1 != -1 && trav2 != -1) &&
-            (VH->Nodes[trav1].elem == VH->Nodes[trav2].elem); 
+    for (trav1 = L1, trav2 = L2; 
+            (trav1 != -1 && trav2 != -1) && (VH->Nodes[trav1].elem == VH->Nodes[trav2].elem); 
                                  trav1 = VH->Nodes[trav1].next, trav2 = VH->Nodes[trav2].next) {
     }
     return (trav1 == -1 && trav2 == -1) ? true : false;
+}
+
+boolean isEqualListUnsorted(List L1, List L2, VirtualHeap *VH){
+    
 }
 
 
