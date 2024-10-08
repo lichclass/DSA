@@ -35,13 +35,45 @@ void makenull(Stack *s){
 
 // Note: No isFull(), its only for Array implementation
 
-void displayStack(Stack s){
-    printf("Stack: ");
-    for(Stack trav=s; trav!=NULL; trav=trav->next){
-        printf("| %c ", (isalnum(trav->Elem)) ? trav->Elem : '0' );
+void displayStack(Stack *s){
+    printf("Stack (display by popping): ");
+
+    Stack temp = NULL; // Temporary stack to store popped elements
+
+    // Pop elements from the original stack and display them
+    while (*s != NULL) {
+        // Print the top element
+        printf("%c ", (*s)->Elem);
+
+        // Push the element to the temporary stack
+        Stack newNode = (Stack)malloc(sizeof(struct node));
+        newNode->Elem = (*s)->Elem;
+        newNode->next = temp;
+        temp = newNode;
+
+        // Move to the next element (pop)
+        *s = (*s)->next;
     }
-    printf("|\n");
+
+    printf("\n");
+
+    // Restore the original stack from the temporary stack
+    while (temp != NULL) {
+        // Pop from the temporary stack and push back to the original stack
+        Stack newNode = (Stack)malloc(sizeof(struct node));
+        newNode->Elem = temp->Elem;
+        newNode->next = *s;
+        *s = newNode;
+
+        // Move to the next element (pop from temp)
+        Stack oldNode = temp;
+        temp = temp->next;
+        free(oldNode);
+    }
 }
+
+
+
 
 int main(){
     Stack s;
@@ -50,17 +82,17 @@ int main(){
     push('U', &s);
     push('S', &s);
     push('C', &s);
-    push('D', &s);
-    push('F', &s);
 
     printf("Is it empty: %d\n", isEmpty(s));
     printf("Peek: %c\n", peek(s));
 
-    displayStack(s);
+    displayStack(&s);
 
-    makenull(&s);
+    displayStack(&s);
 
-    printf("Is it empty: %d\n", isEmpty(s));
+    // makenull(&s);
+
+    // printf("Is it empty: %d\n", isEmpty(s));
 
     return 0;
 

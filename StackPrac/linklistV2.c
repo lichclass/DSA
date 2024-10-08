@@ -51,9 +51,18 @@ void makenull(Stack *s){
 
 void displayStack(Stack s){
     printf("Stack: ");
-    for(Stack trav=s; trav!=NULL; trav=trav->next){
-        printf("| %c ", (isalnum(trav->Elem)) ? trav->Elem : '0' );
+    
+    Stack temp;
+    initialize(&temp);
+
+    Stack *trav;
+    for(trav = s; (*trav)->next != NULL; trav = &(*trav)->next){
+
     }
+    Stack temp = *trav;
+    (*trav)->next = NULL;
+    free(temp);
+
     printf("|\n");
 }
 
