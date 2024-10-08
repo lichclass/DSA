@@ -50,8 +50,10 @@ void makenull(Queue *Q){ while(Q->front!=NULL){ dequeue(Q); } }
 
 void displayQueue(Queue Q){
     printf("Queue: ");
-    for(Nodetype trav = Q.front; trav!=NULL; trav=trav->next){
-        printf("| %c ", (isalnum(trav->Elem)) ? trav->Elem : '0' );
+    Nodetype temp = Q.front;
+    while(temp!=NULL){
+        printf("| %c ", temp->Elem);
+        temp = temp->next;
     }
     printf("|\n");
 }
@@ -63,19 +65,6 @@ int main(){
     enqueue('a', &Q);
     enqueue('b', &Q);
     enqueue('c', &Q);
-
-    dequeue(&Q);
-    dequeue(&Q);
-    dequeue(&Q);
-    dequeue(&Q);
-
-    enqueue('a', &Q);
-    enqueue('b', &Q);
-    enqueue('c', &Q);
-
-    makenull(&Q);
-
-    enqueue('L', &Q);
 
     displayQueue(Q);
 
